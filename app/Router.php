@@ -4,8 +4,7 @@ class Router{
     private $routes;
     
     public function __construct(){
-        $routes_path = ROOT . '/app/config/routes.php';
-        $this->routes = include($routes_path);
+        $this->routes = include(ROOT . '/app/config/routes.php');
     }
     
     private function getURI(){
@@ -13,7 +12,7 @@ class Router{
             $uri = trim($_SERVER['REQUEST_URI'], '/');
         }
         
-        return $uri;
+        return $uri ?? null;
     }
     
     public function run(){
