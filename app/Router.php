@@ -4,7 +4,7 @@ class Router{
     private $routes;
     
     public function __construct(){
-        $routes_path = ROOT . '/config/routes.php';
+        $routes_path = ROOT . '/app/config/routes.php';
         $this->routes = include($routes_path);
     }
     
@@ -39,7 +39,7 @@ class Router{
                 $controllerName = ucfirst($controllerName);
                 
                 $actionName = 'action'.ucfirst(array_shift($segments));
-                
+
                 $parametres = $segments;
 
         

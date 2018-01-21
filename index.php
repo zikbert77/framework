@@ -13,7 +13,6 @@ error_reporting(E_ALL);
 $dir_name = str_replace('\\','/', dirname(__FILE__));
 
 define('ROOT', $dir_name);
-require_once(ROOT . '/app/Router.php');
 
 require_once(ROOT . '/app/Router.php');
 

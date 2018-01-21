@@ -1,12 +1,14 @@
 <?php
-
 //namespace App\Controller;
 
-class DefaultController
+use App\Controller;
+require_once ROOT . '/app/Controller.php';
+
+
+class DefaultController extends Controller
 {
     public function actionIndex(){
 
-        require_once(ROOT . '/views/index.php');
-        return true;
+        return $this->render('test/index.php');
     }
 }
