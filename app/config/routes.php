@@ -7,5 +7,6 @@
 */
 
 return [
+    'path/([0-9]+)/([a-zA-Z]+)' => 'Default/method/$1/$2',
     '' => 'Default/index',
 ];
