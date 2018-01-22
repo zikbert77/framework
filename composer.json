@@ -1,0 +1,24 @@
+{
+  "name": "westside/dcb-landing",
+  "description": "Framework",
+  "type": "project",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Bohdan Bondaruk",
+      "email": "bogdan.bondaruk97@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://composer17@bitbucket.org/advantagemediahub/logger-api.git"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "app\\": "app/"
+    }
+  }
+}

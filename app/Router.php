@@ -1,13 +1,20 @@
 <?php
 
-class Router{
+namespace app;
+
+use Exception;
+
+class Router {
+
     private $routes;
     
     public function __construct(){
+
         $this->routes = include(ROOT . '/app/config/routes.php');
     }
     
     private function getURI(){
+
         if(!empty($_SERVER['REQUEST_URI'])){
             $uri = trim($_SERVER['REQUEST_URI'], '/');
         }
@@ -17,15 +24,16 @@ class Router{
     
     public function run(){
        //Отримати строку запроса
-        
+
         $uri = $this->getURI();
-        
+
        //Перевірити наявність такого запросу в routes.php
         
         foreach($this->routes as $uriPattern => $path){
-            
+
             //Зрівнюємо $uriPattern and $uri
             if(preg_match("~$uriPattern~", $uri)){
+
                 //Долучаємо внутрішній шлях із зовнішнього згідно за правилом
                 
                 $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
@@ -40,22 +48,22 @@ class Router{
 
                 $parametres = $segments;
 
-        
-               //Підключити файл класу-контролера
 
-                $controllerFile = ROOT . '/app/controllers/' . $controllerName . '.php';
+               /**
+                * Підключити файл класу-контролера
+                * Створити об'єкт, визвати екшн
+                **/
 
-                if(file_exists($controllerFile)){
-                    include_once($controllerFile);
+                $controllerName = 'app\\controllers\\'.$controllerName;
+
+                if(class_exists($controllerName)){
+
+                    $controllerObject = new $controllerName;
+                    $result = call_user_func_array(array($controllerObject, $actionName), $parametres);
+
                 } else {
                     throw new Exception("Controller not found");
                 }
-
-               //Створити об'єкт, визвати екшн
-
-                $controllerObject = new $controllerName;
-
-                $result = call_user_func_array(array($controllerObject, $actionName), $parametres);
 
                 if($result != null){
                     break;

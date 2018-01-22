@@ -7,5 +7,5 @@
 */
 
 return [
-    '' => 'Default/index',
+    'test' => 'Def1ault/index',
 ];

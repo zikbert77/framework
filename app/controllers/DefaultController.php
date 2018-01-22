@@ -1,8 +1,8 @@
 <?php
-//namespace App\Controller;
 
-use App\Controller;
-require_once ROOT . '/app/Controller.php';
+namespace app\controllers;
+
+use app\Controller;
 
 class DefaultController extends Controller
 {

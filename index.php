@@ -1,5 +1,7 @@
 <?php
 
+use app\Router;
+
     //FRONT CONTROLLER
 
     //1. Загальні налаштування
@@ -14,12 +16,12 @@ $dir_name = str_replace('\\','/', dirname(__FILE__));
 
 define('ROOT', $dir_name);
 
-require_once(ROOT . '/app/Router.php');
+require ROOT . '/vendor/autoload.php';
 
-    //3. З'єднання з БД
+//3. З'єднання з БД
 require_once(ROOT . '/components/Db.php');
 
-    //4. Виклик Routers
+//4. Виклик Routers
 
 $router = new Router;
 $router->run();
