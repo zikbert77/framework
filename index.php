@@ -6,7 +6,7 @@ use app\Router;
   
 /**
  * Show exceptions in dev environment
-  */
+ */
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
