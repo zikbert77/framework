@@ -7,7 +7,7 @@ use PDOException;
 
 class Db {
     public static function getConnection(){
-        $paramsPath = ROOT . '/config/db_params.php';
+        $paramsPath = ROOT . '/app/config/db_params.php';
         $params = include($paramsPath);
         $dsn = sprintf( "mysql:host=%s;dbname=%s;charset=utf8", $params['host'], $params['db_name']);
         $opt = [

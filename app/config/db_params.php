@@ -3,6 +3,6 @@
 return array(
     'host' => 'localhost',
     'user' => 'root',
-    'pass' => '123',
+    'password' => '123',
     'db_name' => 'symfony',
 );
