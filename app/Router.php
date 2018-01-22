@@ -22,55 +22,67 @@ class Router {
         return $uri ?? null;
     }
     
-    public function run(){
-       //Отримати строку запроса
+    public function run()
+    {
 
-        $uri = $this->getURI();
+        try {
 
-       //Перевірити наявність такого запросу в routes.php
-        
-        foreach($this->routes as $uriPattern => $path){
+            //Отримати строку запроса
 
-            //Зрівнюємо $uriPattern and $uri
-            if(preg_match("~$uriPattern~", $uri)){
+            $uri = $this->getURI();
 
-                //Долучаємо внутрішній шлях із зовнішнього згідно за правилом
-                
-                $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
-                
-                //Визначаємо який контроллер і екшн
-                
-                $segments = explode('/', $internalRoute);
-                
-                $controllerName = array_shift($segments).'Controller';
+            //Перевірити наявність такого запросу в routes.php
 
-                $actionName = 'action'.ucfirst(array_shift($segments));
+            foreach ($this->routes as $uriPattern => $path) {
 
-                $parametres = $segments;
+                //Зрівнюємо $uriPattern and $uri
+                if (preg_match("~$uriPattern~", $uri)) {
+
+                    //Долучаємо внутрішній шлях із зовнішнього згідно за правилом
+
+                    $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
+
+                    //Визначаємо який контроллер і екшн
+
+                    $segments = explode('/', $internalRoute);
+
+                    $controllerName = array_shift($segments) . 'Controller';
+
+                    $actionName = 'action' . ucfirst(array_shift($segments));
+
+                    $parametres = $segments;
 
 
-               /**
-                * Підключити файл класу-контролера
-                * Створити об'єкт, визвати екшн
-                **/
+                    /**
+                     * Підключити файл класу-контролера
+                     * Створити об'єкт, визвати екшн
+                     **/
 
-                $controllerName = 'app\\controllers\\'.$controllerName;
+                    $controllerName = 'app\\controllers\\' . $controllerName;
 
-                if(class_exists($controllerName)){
+                    if (class_exists($controllerName)) {
 
-                    $controllerObject = new $controllerName;
-                    $result = call_user_func_array(array($controllerObject, $actionName), $parametres);
+                        $controllerObject = new $controllerName;
 
-                } else {
-                    throw new Exception("Controller not found");
+                        if(!method_exists($controllerObject, $actionName)){
+                            throw new Exception('Action does not exists');
+                        }
+
+                        $result = call_user_func_array(array($controllerObject, $actionName), $parametres);
+
+                    } else {
+                        throw new Exception('Controller not found');
+                    }
+
+                    if ($result != null) {
+                        break;
+                    }
+
                 }
-
-                if($result != null){
-                    break;
-                }
-        
             }
+        } catch (Exception $e){
+            print_r($e->getMessage());
+            return false;
         }
-            
     }  
 }
