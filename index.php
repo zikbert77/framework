@@ -11,9 +11,8 @@ ini_set('display_errors',1);
 error_reporting(E_ALL);
 
 //2. System file include
-$dir_name = str_replace('\\','/', dirname(__FILE__));
 
-define('ROOT', $dir_name);
+define('ROOT', str_replace('\\','/', dirname(__FILE__)));
 
 /**
  * Helpers functions
