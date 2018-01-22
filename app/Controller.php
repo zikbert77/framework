@@ -8,8 +8,7 @@ class Controller
 {
     protected function redirectToRoute($path)
     {
-        header("Location: $path");
-        return true;
+        return header("Location: $path");
     }
 
     protected function render($path)
@@ -18,13 +17,12 @@ class Controller
             $filePath = ROOT . '/views/' . $path;
 
             if (file_exists($filePath))
-                require_once $filePath;
+                return require_once $filePath;
             else
                 throw new Exception("View not found");
         } catch (Exception $e){
             print_r($e->getMessage());
             return false;
         }
-        return true;
     }
 }
