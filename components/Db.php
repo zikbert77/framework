@@ -1,6 +1,6 @@
 <?php
 
-namespace componenets;
+namespace components;
 
 use PDO;
 use PDOException;

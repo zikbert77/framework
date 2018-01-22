@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\Controller;
-use componenets\Db;
+use components\Db;
 
 class DefaultController extends Controller
 {
