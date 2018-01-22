@@ -16,6 +16,11 @@ $dir_name = str_replace('\\','/', dirname(__FILE__));
 define('ROOT', $dir_name);
 
 /**
+ * Helpers functions
+*/
+require_once ROOT . '/core/helpers.php';
+
+/**
  * PSR-4 classes autoload
 */
 require ROOT . '/vendor/autoload.php';
@@ -24,6 +29,5 @@ require ROOT . '/vendor/autoload.php';
 require_once(ROOT . '/components/Db.php');
 
 //4. Start routing
-
 $router = new Router;
 $router->run();
