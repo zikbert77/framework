@@ -1,11 +1,22 @@
 <?php
 
 /**
- * Set route as 'path' => 'NameController/methodAction'
+ * Set route as
+ * 'name' => [
+ *          'defaults' => 'NameController/methodAction',
+ *          'path' => ''
+ *          ]
  *
- * Route with parameters 'path/([0-9]+)/([a-zA-Z]+)' => 'NameController/methodAction/$1/$2'
+ * Route with parameters
+ * name' => [
+ *          'defaults' => 'NameController/methodAction/$1/$2',
+ *          'path' => 'path/([0-9]+)/([a-zA-Z]+)'
+ *          ]
 */
 
 return [
-    '' => 'Default/index'
+    'name' => [
+        'defaults' => 'Default/index',
+        'path' => ''
+    ]
 ];

@@ -36,11 +36,11 @@ class Router {
             foreach ($this->routes as $uriPattern => $path) {
 
                 //Зрівнюємо $uriPattern and $uri
-                if (preg_match("~$uriPattern~", $uri)) {
+                if (preg_match("~{$path['path']}~", $uri)) {
 
                     //Долучаємо внутрішній шлях із зовнішнього згідно за правилом
 
-                    $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
+                    $internalRoute = preg_replace("~{$path['path']}~", $path['defaults'], $uri);
 
                     //Визначаємо який контроллер і екшн
 
