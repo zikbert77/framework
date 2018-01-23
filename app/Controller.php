@@ -21,8 +21,7 @@ class Controller
             else
                 throw new Exception("View not found");
         } catch (Exception $e){
-            print_r($e->getMessage());
-            return false;
+            return print_r($e->getMessage());
         }
     }
 }
