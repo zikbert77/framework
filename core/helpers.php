@@ -4,6 +4,9 @@
  * Write your own functions and use it anywhere in your beautiful code.
 */
 
+/**
+ * Pretty variable output
+*/
 function dump($var)
 {
     echo '<pre style="background-color: black; color: darkorange; padding: 5px;">';
