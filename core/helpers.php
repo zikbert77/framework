@@ -35,17 +35,12 @@ function path($routeName, $optionArray = []) : string
                 $replacement .= '/' . $item;
             }
 
-//            if (preg_match("~{$path}~", $replacement)){
-//                preg_replace("~{$path}~", $replacement, $path);
-//                dump('preg ok');
-//            }
-
             $explode = explode('/([', $path);
 
-            return '/' . $explode[0] . $replacement;
+            return $explode[0] . $replacement;
         }
 
-        return '/' . $path;
+        return $path;
 
 
     } catch (Exception $e){

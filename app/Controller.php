@@ -6,9 +6,11 @@ use Exception;
 
 class Controller
 {
-    protected function redirectToRoute($path)
+    protected function redirectToRoute($path, $optionsArray = [])
     {
-        return header("Location: $path");
+        $newpath = path($path, $optionsArray);
+
+        return header("Location: $newpath");
     }
 
     protected function render($path)
