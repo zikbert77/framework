@@ -18,6 +18,6 @@
 return [
     'name' => [
         'defaults' => 'Default/index',
-        'path' => ''
+        'path' => '/'
     ]
 ];

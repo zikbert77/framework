@@ -16,7 +16,7 @@ class Router {
     private function getURI(){
 
         if(!empty($_SERVER['REQUEST_URI'])){
-            $uri = trim($_SERVER['REQUEST_URI'], '/');
+            $uri = trim($_SERVER['REQUEST_URI']);
         }
         
         return $uri ?? null;
