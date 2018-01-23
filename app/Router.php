@@ -79,6 +79,8 @@ class Router {
                     }
 
                 }
+
+                throw new Exception('Route not found!');
             }
         } catch (Exception $e){
             print_r($e->getMessage());
