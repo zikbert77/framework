@@ -7,7 +7,7 @@ use Exception;
 class Controller
 {
     protected function redirect($url){
-        return header("Location: $path");
+        return header("Location: $url");
     }
 
     protected function redirectToRoute($path, $optionsArray = [])
