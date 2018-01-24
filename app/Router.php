@@ -76,13 +76,15 @@ class Router {
 
                     if ($result != null) {
                         break;
+                    } else {
+                        throw new Exception('Route not found!');
                     }
 
                 }
 
             }
 
-            throw new Exception('Route not found!');
+
         } catch (Exception $e){
             print_r($e->getMessage());
             return false;
