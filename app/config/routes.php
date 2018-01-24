@@ -16,13 +16,8 @@
 
 
 return [
-
     'name' => [
         'defaults' => 'Default/index',
         'path' => '/'
-    ],
-    'test' => [
-        'defaults' => 'Default/index',
-        'path' => '/tets'
     ],
 ];
