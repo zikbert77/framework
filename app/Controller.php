@@ -17,15 +17,18 @@ class Controller
         return header("Location: $newpath");
     }
 
-    protected function render($path)
+    protected function render($path, $variables = [])
     {
         try {
             $filePath = ROOT . '/views/' . $path;
 
-            if (file_exists($filePath))
+            if (file_exists($filePath)){
+                if (!empty($variables))
+                    extract($variables);
                 return require_once $filePath;
-            else
+            } else {
                 throw new Exception("View not found");
+            }
         } catch (Exception $e){
             return print_r($e->getMessage());
         }

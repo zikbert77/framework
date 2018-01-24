@@ -84,10 +84,11 @@ class Router {
 
             }
 
-
         } catch (Exception $e){
             print_r($e->getMessage());
             return false;
         }
+
+        return false;
     }  
 }
