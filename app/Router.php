@@ -11,6 +11,7 @@ class Router {
     public function __construct(){
 
         $this->routes = include(ROOT . '/app/config/routes.php');
+        arsort($this->routes);
     }
     
     private function getURI(){
@@ -26,6 +27,8 @@ class Router {
     {
 
         try {
+
+            dump($this->routes);exit();
 
             //Отримати строку запроса
 
