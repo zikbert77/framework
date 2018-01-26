@@ -28,8 +28,6 @@ class Router {
 
         try {
 
-            dump($this->routes);exit();
-
             //Отримати строку запроса
 
             $uri = $this->getURI();
