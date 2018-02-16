@@ -3,13 +3,31 @@
 namespace App;
 
 use Exception;
+use app\Model;
 
 class Controller
 {
+
+    /**
+     * Controller constructor.
+     * Set connection to database
+     */
+    public function __construct()
+    {
+        Model::connect();
+    }
+
+    /**
+     * @param $url string
+     */
     protected function redirect($url){
         return header("Location: $url");
     }
 
+    /**
+     * @param string $path
+     * @param array $optionsArray
+     */
     protected function redirectToRoute($path, $optionsArray = [])
     {
         $newpath = path($path, $optionsArray);
@@ -17,6 +35,11 @@ class Controller
         return header("Location: $newpath");
     }
 
+    /**
+     * @param string $path
+     * @param array $variables
+     * @return mixed
+     */
     protected function render($path, $variables = [])
     {
         try {
