@@ -43,13 +43,19 @@ class Session extends Model
             return false;
     }
 
-    public static function validateHash($hash)
+
+    /**
+     * @param array $session_user
+     * @return bool
+     */
+    public static function validateHash($session_user)
     {
 
-        $stmt = self::$db->prepare("SELECT user_id FROM sessions WHERE hash = :hash LIMIT 1");
+        $stmt = self::$db->prepare("SELECT user_id FROM sessions WHERE hash = :hash AND user_id = :user_id LIMIT 1");
 
         if($stmt->execute([
-            'hash' => $hash
+            'hash' => $session_user['hash'],
+            'user_id' => $session_user['user_id']
         ])) {
 
             $user_id = $stmt->fetch();
@@ -64,8 +70,7 @@ class Session extends Model
 
                     $hash_from_db = md5($user['username'] . $user['password'] . $_SERVER['HTTP_USER_AGENT'] . $_SERVER['REMOTE_ADDR']);
 
-
-                    if ($hash === $hash_from_db)
+                    if ($session_user['hash'] === $hash_from_db)
                         return true;
                 }
             }

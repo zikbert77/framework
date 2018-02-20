@@ -55,7 +55,10 @@ class AuthUtil
      */
     private function isAuth()
     {
-        if(!$this->user || !Session::validateHash($this->user['hash']))
+        if(!$this->user)
+            return false;
+
+        if (!Session::validateHash($this->user))
             return false;
 
         return true;
@@ -107,8 +110,6 @@ class AuthUtil
      */
     public function register($username, $password)
     {
-        $password = md5($password);
-
         $response = [];
         $response['errors'] = false;
 
