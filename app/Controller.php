@@ -25,24 +25,6 @@ class Controller
     }
 
     /**
-     * @param $url string
-     */
-    protected function redirect($url){
-        return header("Location: $url");
-    }
-
-    /**
-     * @param string $path
-     * @param array $optionsArray
-     */
-    protected function redirectToRoute($path, $optionsArray = [])
-    {
-        $newpath = path($path, $optionsArray);
-
-        return header("Location: $newpath");
-    }
-
-    /**
      * @param string $path
      * @param array $variables
      * @return mixed

@@ -47,3 +47,36 @@ function path($routeName, $optionArray = []) : string
         return print_r($e->getMessage());
     }
 }
+
+
+/**
+ * @param $url string
+ */
+function redirect($url){
+    try {
+
+        if (!preg_match('~(http|https)://([a-zA-Z]+)~', $url))
+            $url = 'https://'.$url;
+
+        header("Location: $url");
+    } catch (Exception $e) {
+        print_r($e->getMessage());
+        exit();
+    }
+}
+
+/**
+ * @param string $path
+ * @param array $optionsArray
+ */
+function redirectToRoute($path, $optionsArray = [])
+{
+    try {
+        $newpath = path($path, $optionsArray);
+
+        header("Location: $newpath");
+    } catch (Exception $e) {
+        print_r($e->getMessage());
+        exit();
+    }
+}
