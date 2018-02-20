@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Фев 20 2018 г., 13:09
+-- Время создания: Фев 20 2018 г., 15:59
 -- Версия сервера: 5.7.21-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.27-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -35,13 +35,6 @@ CREATE TABLE `sessions` (
   `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Дамп данных таблицы `sessions`
---
-
-INSERT INTO `sessions` (`id`, `user_id`, `ip`, `user_agent`, `hash`, `time`) VALUES
-(9, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36', '60ab696619e1dfe01f4769b757b0a99a', '2018-02-20 13:08:02');
-
 -- --------------------------------------------------------
 
 --
@@ -69,14 +62,6 @@ CREATE TABLE `users` (
   `password` varchar(32) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Дамп данных таблицы `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '2018-02-20 09:52:01'),
-(5, 'admi1n', 'c3284d0f94606de1fd2af172aba15bf3', '2018-02-20 12:16:58');
 
 --
 -- Индексы сохранённых таблиц
