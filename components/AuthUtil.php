@@ -61,7 +61,9 @@ class AuthUtil
         return true;
     }
 
-
+    /**
+     * public function
+     */
     public function checkAuth()
     {
         if(!$this->isAuth())
