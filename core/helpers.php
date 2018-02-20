@@ -15,6 +15,19 @@ function dump($var)
 }
 
 /**
+ * @param mixed $var
+ *
+ * Variable output and stop script
+ */
+function dd($var)
+{
+    echo '<pre style="background-color: black; color: whitesmoke; padding: 5px;">';
+    print_r($var);
+    echo '</pre>';
+    exit();
+}
+
+/**
  * @return string
  *
  * Return formatting path with $optionArray parameters if it defined
@@ -47,7 +60,6 @@ function path($routeName, $optionArray = []) : string
         return print_r($e->getMessage());
     }
 }
-
 
 /**
  * @param $url string
