@@ -3,16 +3,21 @@
 use app\Router;
 
 //1. General settings
+
 session_start();
+
 /**
  * Show exceptions in dev environment
  */
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
-//2. System file include
-
+/**
+ * Set project path in constant ROOT
+ */
 define('ROOT', str_replace('\\','/', dirname(__FILE__)));
+
+//2. System file include
 
 /**
  * Helpers functions
