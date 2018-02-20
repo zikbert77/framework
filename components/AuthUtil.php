@@ -82,12 +82,8 @@ class AuthUtil
          */
         $userData = User::getUserHashByCredentials($login, $password);
 
-        if($userData){
-
+        if($userData)
             $this->auth($userData);
-
-        }
-
     }
 
     /**
