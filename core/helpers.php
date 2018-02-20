@@ -6,7 +6,8 @@
 
 /**
  * Pretty variable output
-*/
+ * @param mixed $var
+ */
 function dump($var)
 {
     echo '<pre style="background-color: black; color: darkorange; padding: 5px;">';
@@ -28,6 +29,9 @@ function dd($var)
 }
 
 /**
+ * @param string $routeName
+ * @param array $optionArray
+ *
  * @return string
  *
  * Return formatting path with $optionArray parameters if it defined
