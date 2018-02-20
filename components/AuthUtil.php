@@ -3,12 +3,17 @@
 namespace components;
 
 
-use app\models\Session;
-use app\models\User;
 use Exception;
+use app\models\User;
+use app\models\Session;
 
 class AuthUtil
 {
+
+    private $loginPath = '/login';
+    private $logoutPath = '/logout';
+    private $registerPath = '/register';
+
     /**
      * @var bool $isAuth
      */
@@ -64,7 +69,7 @@ class AuthUtil
     public function login($login, $password)
     {
         if($this->isAuth())
-            header("Location: /logout");
+            header("Location: $this->logoutPath");
 
         /**
          * @var array $userData
@@ -86,9 +91,9 @@ class AuthUtil
     {
         if($this->isAuth()){
             if($this->unsetSession())
-                header("Location: /login");
+                header("Location: $this->loginPath");
         } else
-            header("Location: /login");
+            header("Location: $this->loginPath");
     }
 
     /**
@@ -127,6 +132,7 @@ class AuthUtil
     private function unsetSession()
     {
         try {
+
             $_SESSION['security_check'] = false;
             unset($_SESSION['user']);
 
