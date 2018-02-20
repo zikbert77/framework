@@ -75,7 +75,7 @@ class AuthUtil
     public function login($login, $password)
     {
         if($this->isAuth())
-            header("Location: $this->logoutPath");
+            redirect($this->logoutPath);
 
         /**
          * @var array $userData
@@ -93,9 +93,9 @@ class AuthUtil
     {
         if($this->isAuth()){
             if($this->unsetSession())
-                header("Location: $this->loginPath");
+                redirect($this->loginPath);
         } else
-            header("Location: $this->loginPath");
+            redirect($this->loginPath);
     }
 
     /**
