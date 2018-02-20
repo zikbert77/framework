@@ -22,6 +22,8 @@ class User extends Model
             'password' => $password
         ])) {
             $user = $stmt->fetch();
+            if($stmt->rowCount() == 0)
+                die('User not found');
 
             $result['user_id'] = $user['id'];
             $result['hash'] = md5($user['username'] . $user['password'] . $_SERVER['HTTP_USER_AGENT'] . $_SERVER['REMOTE_ADDR']);

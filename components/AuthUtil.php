@@ -62,6 +62,12 @@ class AuthUtil
     }
 
 
+    public function checkAuth()
+    {
+        if(!$this->isAuth())
+            die('Access denied');
+    }
+
     /**
      * @param string $login
      * @param string $password
