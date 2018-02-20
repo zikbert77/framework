@@ -16,6 +16,8 @@ class Controller
     /**
      * Controller constructor.
      * Set connection to database
+     *
+     * Include AuthUtil plugin
      */
     public function __construct()
     {
