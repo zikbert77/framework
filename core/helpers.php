@@ -56,7 +56,7 @@ function redirect($url){
     try {
 
         if (!preg_match('~(http|https)://([a-zA-Z]+)~', $url))
-            $url = 'https://'.$url;
+            $url .= 'https://';
 
         header("Location: $url");
     } catch (Exception $e) {
