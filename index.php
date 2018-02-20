@@ -3,7 +3,7 @@
 use app\Router;
 
 //1. General settings
-  
+session_start();
 /**
  * Show exceptions in dev environment
  */

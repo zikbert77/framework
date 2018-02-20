@@ -2,11 +2,16 @@
 
 namespace App;
 
-use Exception;
 use app\Model;
+use Exception;
+use components\AuthUtil;
 
 class Controller
 {
+    /**
+     * @var AuthUtil $auth
+     */
+    protected $auth;
 
     /**
      * Controller constructor.
@@ -15,6 +20,8 @@ class Controller
     public function __construct()
     {
         Model::connect();
+
+        $this->auth = new AuthUtil();
     }
 
     /**
