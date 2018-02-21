@@ -58,28 +58,28 @@ function path($routeName, $optionArray = []) : string
         }
 
         return $path;
-
-
     } catch (Exception $e){
-        return print_r($e->getMessage());
+        return die($e->getMessage());
     }
 }
 
 /**
  * @param $url string
+ * @return mixed
  */
 function redirect($url){
     try {
         header("Location: $url");
+        return true;
     } catch (Exception $e) {
-        print_r($e->getMessage());
-        exit();
+        return die($e->getMessage());
     }
 }
 
 /**
  * @param string $path
  * @param array $optionsArray
+ * @return mixed
  */
 function redirectToRoute($path, $optionsArray = [])
 {
@@ -87,8 +87,8 @@ function redirectToRoute($path, $optionsArray = [])
         $newpath = path($path, $optionsArray);
 
         header("Location: $newpath");
+        return true;
     } catch (Exception $e) {
-        print_r($e->getMessage());
-        exit();
+        return die($e->getMessage());
     }
 }
