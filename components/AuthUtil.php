@@ -45,9 +45,10 @@ class AuthUtil
     }
 
     /**
+     * @param string|boolean $role
      * @return bool
      */
-    private function isAuth($role = false, $routeIfAccessDenied = false)
+    private function isAuth($role = false)
     {
         if(!$this->user)
             return false;
@@ -69,7 +70,7 @@ class AuthUtil
      */
     public function checkAuth($role = false, $routeIfAccessDenied = false)
     {
-        if(!$this->isAuth($role, $routeIfAccessDenied))
+        if(!$this->isAuth($role))
             if($routeIfAccessDenied)
                 return redirectToRoute($routeIfAccessDenied);
         else
