@@ -67,14 +67,17 @@ class AuthUtil
      * public function
      * @param string|boolean $role
      * @param string|boolean $routeIfAccessDenied
+     * @return mixed
      */
     public function checkAuth($role = false, $routeIfAccessDenied = false)
     {
-        if(!$this->isAuth($role))
+        if(!$this->isAuth($role)){
             if($routeIfAccessDenied)
                 return redirectToRoute($routeIfAccessDenied);
-        else
-            die('Access denied');
+            else
+                return die('Access denied');
+        }
+        return true;
     }
 
     /**
