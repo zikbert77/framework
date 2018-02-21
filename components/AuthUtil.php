@@ -47,13 +47,17 @@ class AuthUtil
     /**
      * @return bool
      */
-    private function isAuth()
+    private function isAuth($role = false, $routeIfAccessDenied = false)
     {
         if(!$this->user)
             return false;
 
         if (!Session::validateHash($this->user))
             return false;
+
+        if($role)
+            if(!isset($_SESSION['role']) || $_SESSION['role'] !== $role)
+                die('Access denied (role)');
 
         return true;
     }
@@ -65,11 +69,11 @@ class AuthUtil
      */
     public function checkAuth($role = false, $routeIfAccessDenied = false)
     {
-        if(!$this->isAuth())
+        if(!$this->isAuth($role, $routeIfAccessDenied))
             if($routeIfAccessDenied)
                 return redirectToRoute($routeIfAccessDenied);
-            else
-                die('Access denied');
+        else
+            die('Access denied');
     }
 
     /**
