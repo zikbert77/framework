@@ -12,12 +12,6 @@ class AuthUtil
 
     private $loginPath = '/login';
     private $logoutPath = '/logout';
-    private $registerPath = '/register';
-
-    /**
-     * @var bool $isAuth
-     */
-    private $isAuth;
 
     /**
      * @var array|boolean $user
@@ -26,7 +20,6 @@ class AuthUtil
 
     public function __construct()
     {
-        $this->isAuth   = $_SESSION['security_check'] ?? false;
         $this->user     = $_SESSION['user'] ?? false;
     }
 
@@ -38,14 +31,15 @@ class AuthUtil
     {
         try {
 
-            Session::createSession($user);
+            if(Session::createSession($user)){
+                $_SESSION['security_check'] = true;
+                $_SESSION['user'] = $user;
+            }
 
         } catch (\PDOException $e){
             return print_r($e->getMessage());
         }
 
-        $_SESSION['security_check'] = true;
-        $_SESSION['user'] = $user;
 
         return true;
     }
@@ -66,11 +60,16 @@ class AuthUtil
 
     /**
      * public function
+     * @param string|boolean $role
+     * @param string|boolean $routeIfAccessDenied
      */
-    public function checkAuth()
+    public function checkAuth($role = false, $routeIfAccessDenied = false)
     {
         if(!$this->isAuth())
-            die('Access denied');
+            if($routeIfAccessDenied)
+                return redirectToRoute($routeIfAccessDenied);
+            else
+                die('Access denied');
     }
 
     /**
@@ -137,6 +136,10 @@ class AuthUtil
     private function unsetSession()
     {
         try {
+
+            if($_SESSION['user']){
+                Session::deleteSession($_SESSION['user']);
+            }
 
             $_SESSION['security_check'] = false;
             unset($_SESSION['user']);

@@ -15,7 +15,7 @@ class User extends Model
      */
     public static function getUserHashByCredentials($username, $password)
     {
-        $stmt = self::$db->prepare("SELECT * FROM users WHERE username = :username AND password = :password LIMIT 1");
+        $stmt = self::$db->prepare("SELECT id, username, password FROM users WHERE username = :username AND password = :password LIMIT 1");
 
         if ($stmt->execute([
             'username' => $username,

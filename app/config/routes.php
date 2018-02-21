@@ -20,4 +20,8 @@ return [
         'defaults' => 'Default/index',
         'path' => '/'
     ],
+    'login' => [
+        'defaults' => 'Default/login',
+        'path' => '/login'
+    ]
 ];
