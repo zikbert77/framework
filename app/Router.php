@@ -50,7 +50,7 @@ class Router {
 
                     $controllerName = array_shift($segments) . 'Controller';
 
-                    $actionName = ucfirst(array_shift($segments)) . 'Action';
+                    $actionName = array_shift($segments) . 'Action';
 
                     $parametres = $segments;
 

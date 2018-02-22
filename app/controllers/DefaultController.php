@@ -6,7 +6,7 @@ use app\Controller;
 
 class DefaultController extends Controller
 {
-    public function actionIndex(){
+    public function indexAction(){
 
         return $this->render('index.php');
     }
