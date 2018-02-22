@@ -22,6 +22,7 @@ class Db {
         try {
             $pdo = new PDO($dsn, $params['user'], $params['password'], $opt);
         } catch (PDOException $e) {
+            Logger::log('Connecting failure: ' . $e->getMessage());
             die('Connecting failure: ' . $e->getMessage());
         }
 
