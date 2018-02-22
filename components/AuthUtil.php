@@ -4,6 +4,7 @@ namespace components;
 
 
 use Exception;
+use PDOException;
 use app\models\User;
 use app\models\Session;
 
@@ -36,7 +37,7 @@ class AuthUtil
                 $_SESSION['user'] = $user;
             }
 
-        } catch (\PDOException $e){
+        } catch (PDOException $e){
             return print_r($e->getMessage());
         }
 

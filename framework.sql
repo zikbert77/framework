@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Фев 20 2018 г., 15:59
+-- Время создания: Фев 22 2018 г., 13:21
 -- Версия сервера: 5.7.21-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.27-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -95,7 +95,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `sessions_log`
 --
@@ -105,7 +105,7 @@ ALTER TABLE `sessions_log`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --

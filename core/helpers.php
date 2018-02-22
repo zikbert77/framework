@@ -38,7 +38,7 @@ function dd($var)
 */
 function path($routeName, $optionArray = []) : string
 {
-    try {
+    try {;
         $routes = include(ROOT . '/app/config/routes.php');
 
         if (array_key_exists($routeName, $routes))
