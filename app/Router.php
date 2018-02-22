@@ -50,7 +50,7 @@ class Router {
 
                     $controllerName = array_shift($segments) . 'Controller';
 
-                    $actionName = 'action' . ucfirst(array_shift($segments));
+                    $actionName = ucfirst(array_shift($segments)) . 'Action';
 
                     $parametres = $segments;
 
@@ -68,13 +68,13 @@ class Router {
 
                         if(!method_exists($controllerObject, $actionName)){
                             Logger::log('Action does not exists');
-                            throw new Exception('Action does not exists');
+                            throw new Exception('Action ('. $actionName .') does not exists');
                         }
 
                         $result = call_user_func_array(array($controllerObject, $actionName), $parametres);
 
                     } else {
-                        Logger::log('Controller not found');
+                        Logger::log('Controller ('. $controllerName .') not found');
                         throw new Exception('Controller not found');
                     }
 
