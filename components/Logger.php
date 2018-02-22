@@ -12,13 +12,8 @@ class Logger
      */
     public static function log($msg = false)
     {
-        $file = file_exists(self::$logFile) ? fopen(self::$logFile, 'w') : false;
-
         $msg = '[ ' . date('Y-m-d h:i:s') . ' ] ' . $msg . "\n";
 
-        if($file) {
-            fwrite($file, $msg);
-            fclose($file);
-        }
+        file_put_contents(self::$logFile, $msg, FILE_APPEND);
     }
 }
