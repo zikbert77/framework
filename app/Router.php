@@ -2,6 +2,7 @@
 
 namespace app;
 
+use components\Logger;
 use Exception;
 
 class Router {
@@ -66,18 +67,21 @@ class Router {
                         $controllerObject = new $controllerName;
 
                         if(!method_exists($controllerObject, $actionName)){
+                            Logger::log('Action does not exists');
                             throw new Exception('Action does not exists');
                         }
 
                         $result = call_user_func_array(array($controllerObject, $actionName), $parametres);
 
                     } else {
+                        Logger::log('Controller not found');
                         throw new Exception('Controller not found');
                     }
 
                     if ($result != null) {
                         break;
                     } else {
+                        Logger::log('Route not found!');
                         throw new Exception('Route not found!');
                     }
 
@@ -86,6 +90,7 @@ class Router {
             }
 
         } catch (Exception $e){
+            Logger::log($e->getMessage());
             print_r($e->getMessage());
             return false;
         }

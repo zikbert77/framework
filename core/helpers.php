@@ -43,8 +43,10 @@ function path($routeName, $optionArray = []) : string
 
         if (array_key_exists($routeName, $routes))
             $path = $routes[$routeName]['path'];
-        else
+        else{
+            components\Logger::log(sprintf('Route %s not exist', $routeName));
             throw new Exception(sprintf('Route %s not exist', $routeName));
+        }
 
         if (!empty($optionArray)){
             $replacement = '';
@@ -59,6 +61,7 @@ function path($routeName, $optionArray = []) : string
 
         return $path;
     } catch (Exception $e){
+        components\Logger::log($e->getMessage());
         return die($e->getMessage());
     }
 }
@@ -72,6 +75,7 @@ function redirect($url){
         header("Location: $url");
         return true;
     } catch (Exception $e) {
+        components\Logger::log($e->getMessage());
         return die($e->getMessage());
     }
 }
@@ -89,6 +93,7 @@ function redirectToRoute($path, $optionsArray = [])
         header("Location: $newpath");
         return true;
     } catch (Exception $e) {
+        components\Logger::log($e->getMessage());
         return die($e->getMessage());
     }
 }

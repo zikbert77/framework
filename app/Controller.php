@@ -4,6 +4,7 @@ namespace App;
 
 use app\Model;
 use Exception;
+use components\Logger;
 use components\AuthUtil;
 
 class Controller
@@ -41,6 +42,7 @@ class Controller
                     extract($variables);
                 return require_once $filePath;
             } else {
+                Logger::log("View not found");
                 throw new Exception("View not found");
             }
         } catch (Exception $e){
