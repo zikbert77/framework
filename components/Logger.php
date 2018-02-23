@@ -10,8 +10,9 @@ class Logger
     /**
      * @param bool|string $msg
      * @param bool|string $file
+     * @param boolean $msgDate
      */
-    public static function log($msg = false, $file = false)
+    public static function log($msg = false, $file = false, $msgDate = true)
     {
 
         if(is_bool($file)) {
@@ -20,7 +21,11 @@ class Logger
             self::$logFile = 'logs/' . $file . '.txt';
         }
 
-        $msg = '[ ' . date('Y-m-d h:i:s') . ' ] ' . $msg . "\n";
+
+        if($msgDate)
+            $msg = '[ ' . date('Y-m-d h:i:s') . ' ] ' . $msg;
+
+        $msg = $msg . "\n";
 
         file_put_contents(self::$logFile, $msg, FILE_APPEND);
     }
