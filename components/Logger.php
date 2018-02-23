@@ -15,7 +15,7 @@ class Logger
     public static function log($msg = false, $file = false, $msgDate = true)
     {
 
-        if(is_bool($file)) {
+        if(is_bool($file) && $file === true) {
             self::$logFile = 'logs/' . date("Y-M-D") . '.txt';
         } elseif (is_string($file)){
             self::$logFile = 'logs/' . $file . '.txt';
