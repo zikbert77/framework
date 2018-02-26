@@ -51,7 +51,7 @@ class AuthUtil
                 if($redirectToRouteAfterSuccess)
                     return redirectToRoute($redirectToRouteAfterSuccess);
 
-                return redirect($this->defaultSuccessRoute);
+                return redirectToRoute($this->defaultSuccessRoute);
             }
 
         } catch (PDOException $e){
