@@ -21,7 +21,15 @@ class AuthUtil
 
     public function __construct()
     {
-        $this->user     = $_SESSION['user'] ?? false;
+
+        if(isset($_SESSION['user'])){
+            $this->user = $_SESSION['user'];
+        } elseif (isset($_COOKIE['user'])){
+            $this->user = unserialize($_COOKIE['user']);
+        } else {
+            $this->user = false;
+        }
+
     }
 
     /**
@@ -33,7 +41,9 @@ class AuthUtil
         try {
 
             if(Session::createSession($user)){
-                $_SESSION['security_check'] = true;
+
+                setcookie('user', serialize($user), time() + 604800);
+
                 $_SESSION['user'] = $user;
             }
 
@@ -76,8 +86,9 @@ class AuthUtil
             if($routeIfAccessDenied)
                 return redirectToRoute($routeIfAccessDenied);
             else
-                return die('Access denied');
+                return redirect($this->logoutPath);
         }
+
         return true;
     }
 
@@ -88,7 +99,7 @@ class AuthUtil
     public function login($login, $password)
     {
         if($this->isAuth())
-            redirect($this->logoutPath);
+            redirect('/');
 
         /**
          * @var array $userData
@@ -147,11 +158,14 @@ class AuthUtil
         try {
 
             if($_SESSION['user']){
-                Session::deleteSession($_SESSION['user']);
-            }
 
-            $_SESSION['security_check'] = false;
-            unset($_SESSION['user']);
+                if(isset($_COOKIE['user']) && $_COOKIE['user'])
+                    setcookie('user', false, time() - 604800);
+
+                Session::deleteSession($_SESSION['user']);
+
+                unset($_SESSION['user']);
+            }
 
             return true;
         } catch (Exception $e){
