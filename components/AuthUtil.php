@@ -34,6 +34,8 @@ class AuthUtil
     }
 
     /**
+     * Try to authenticate user or return false
+     *
      * @param array $user
      * @param mixed $redirectToRouteAfterSuccess
      * @return bool
@@ -63,6 +65,8 @@ class AuthUtil
     }
 
     /**
+     * Check if isset $this->user and validate hash
+     *
      * @param string|boolean $role
      * @return bool
      */
@@ -83,7 +87,8 @@ class AuthUtil
     }
 
     /**
-     * public function
+     * Public function to check if user is authenticated
+     *
      * @param string|boolean $role
      * @param string|boolean $routeIfAccessDenied
      * @return mixed
@@ -101,6 +106,8 @@ class AuthUtil
     }
 
     /**
+     * Login user
+     *
      * @param string $login
      * @param string $password
      */
@@ -131,6 +138,8 @@ class AuthUtil
     }
 
     /**
+     * Register user
+     *
      * @param string $username
      * @param string $password
      * @return mixed
@@ -159,6 +168,7 @@ class AuthUtil
 
     /**
      * Delete session info
+     *
      * @return bool|mixed
      */
     private function unsetSession()
