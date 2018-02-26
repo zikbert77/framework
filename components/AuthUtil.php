@@ -12,7 +12,7 @@ class AuthUtil
 {
 
     private $loginPath = '/login';
-    private $logoutPath = '/logout';
+    private $defaultRedirect = 'https://www.google.com/';
 
     /**
      * @var array|boolean $user
@@ -34,9 +34,10 @@ class AuthUtil
 
     /**
      * @param array $user
+     * @param mixed $redirectToRouteAfterSuccess
      * @return bool
      */
-    private function auth($user)
+    private function auth($user, $redirectToRouteAfterSuccess = false)
     {
         try {
 
@@ -45,14 +46,19 @@ class AuthUtil
                 setcookie('user', serialize($user), time() + 604800);
 
                 $_SESSION['user'] = $user;
+
+                if($redirectToRouteAfterSuccess)
+                    return redirectToRoute($redirectToRouteAfterSuccess);
+
+                return redirect($this->defaultRedirect);
             }
 
         } catch (PDOException $e){
-            return print_r($e->getMessage());
+            Logger::log($e->getMessage());
+            return false;
         }
 
-
-        return true;
+        return false;
     }
 
     /**
@@ -86,7 +92,7 @@ class AuthUtil
             if($routeIfAccessDenied)
                 return redirectToRoute($routeIfAccessDenied);
             else
-                return redirect($this->logoutPath);
+                return false;
         }
 
         return true;
@@ -99,7 +105,7 @@ class AuthUtil
     public function login($login, $password)
     {
         if($this->isAuth())
-            redirect('/');
+            redirect($this->defaultRedirect);
 
         /**
          * @var array $userData
@@ -169,7 +175,8 @@ class AuthUtil
 
             return true;
         } catch (Exception $e){
-            return print_r($e->getMessage());
+            Logger::log($e->getMessage());
+            return false;
         }
     }
 
