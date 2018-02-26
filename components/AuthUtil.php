@@ -13,6 +13,7 @@ class AuthUtil
 
     private $loginPath = '/login';
     private $defaultRedirect = 'https://www.google.com/';
+    private $defaultSuccessRoute = 'admin_index';
 
     /**
      * @var array|boolean $user
@@ -50,7 +51,7 @@ class AuthUtil
                 if($redirectToRouteAfterSuccess)
                     return redirectToRoute($redirectToRouteAfterSuccess);
 
-                return redirect($this->defaultRedirect);
+                return redirect($this->defaultSuccessRoute);
             }
 
         } catch (PDOException $e){
@@ -67,6 +68,7 @@ class AuthUtil
      */
     private function isAuth($role = false)
     {
+
         if(!$this->user)
             return false;
 
@@ -165,8 +167,10 @@ class AuthUtil
 
             if($_SESSION['user']){
 
-                if(isset($_COOKIE['user']) && $_COOKIE['user'])
+                if(isset($_COOKIE['user']) && $_COOKIE['user']){
                     setcookie('user', false, time() - 604800);
+                    unset($_COOKIE['user']);
+                }
 
                 Session::deleteSession($_SESSION['user']);
 
