@@ -8,6 +8,14 @@ use components\Logger;
 
 class SecurityController extends Controller
 {
+
+    /**
+     * SecurityController constructor
+     *
+     * Check if user not authenticated
+     * If user authenticated redirect to homepage route
+     *
+     */
     public function __construct()
     {
         parent::__construct();
@@ -16,6 +24,11 @@ class SecurityController extends Controller
             return redirectToRoute('homepage');
     }
 
+    /**
+     * Trying to log in User
+     *
+     * @return mixed
+     */
     public function loginAction()
     {
         if (!isset($_POST['login-submit']))
@@ -35,6 +48,12 @@ class SecurityController extends Controller
         return redirect('/admin');
     }
 
+    /**
+     * Log out user
+     * Unset sessions and cookies
+     *
+     * @return mixed
+     */
     public function logoutAction()
     {
         try {
