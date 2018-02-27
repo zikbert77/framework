@@ -16,12 +16,16 @@
 
 
 return [
-    'name' => [
+    'homepage' => [
         'defaults' => 'Default/index',
         'path' => '/'
     ],
     'login' => [
-        'defaults' => 'Default/login',
+        'defaults' => 'Security/login',
         'path' => '/login'
+    ],
+    'logout' => [
+        'defaults' => 'Security/logout',
+        'path' => '/logout'
     ]
 ];
