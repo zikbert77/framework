@@ -109,7 +109,7 @@ class AuthUtil
      * Login user
      *
      * @param string $login
-     * @param string $password
+     * @param string $password in md5 format
      */
     public function login($login, $password)
     {

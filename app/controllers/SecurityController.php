@@ -22,11 +22,11 @@ class SecurityController extends Controller
             return $this->render('AuthUtil/login.php');
 
         $u_name = trim(htmlspecialchars($_POST['lg_username']));
-        $u_pass = trim(htmlspecialchars($_POST['lg_password']));
+        $u_pass = md5(trim(htmlspecialchars($_POST['lg_password'])));
         $remember = isset($_POST['lg_remember'])? $_POST['lg_remember'] : false;
 
         try {
-            if ($this->auth->login($u_name, md5($u_pass)))
+            if ($this->auth->login($u_name, $u_pass))
                 return redirectToRoute('admin_index');
         } catch (\Exception $e){
             Logger::log($e->getMessage());
