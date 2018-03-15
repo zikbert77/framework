@@ -25,6 +25,10 @@ class Session extends Model
         return false;
     }
 
+    /**
+     * @param $user
+     * @return bool
+     */
     public static function createSession($user)
     {
         if (self::checkSessionExists($user))
@@ -44,6 +48,10 @@ class Session extends Model
             return false;
     }
 
+    /**
+     * @param $user
+     * @return bool
+     */
     public static function deleteSession($user)
     {
         $stmt = self::$db->prepare("DELETE FROM sessions WHERE hash = :hash AND user_id = :user_id LIMIT 1");

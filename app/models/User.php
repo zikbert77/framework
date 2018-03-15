@@ -50,6 +50,11 @@ class User extends Model
         return false;
     }
 
+    /**
+     * @param $username
+     * @param $password
+     * @return bool
+     */
     public static function register($username, $password)
     {
 

@@ -7,6 +7,9 @@ use PDOException;
 
 class Db {
 
+    /**
+     * @return PDO
+     */
     public static function getConnection(){
 
         $paramsPath = ROOT . '/app/config/db_params.php';

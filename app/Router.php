@@ -8,12 +8,18 @@ use components\Logger;
 class Router {
 
     private $routes;
-    
+
+    /**
+     * Router constructor.
+     */
     public function __construct(){
 
         $this->routes = include(ROOT . '/app/config/routes.php');
     }
-    
+
+    /**
+     * @return null|string
+     */
     private function getURI(){
 
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -22,7 +28,10 @@ class Router {
         
         return $uri ?? null;
     }
-    
+
+    /**
+     * @return bool
+     */
     public function run()
     {
         try {

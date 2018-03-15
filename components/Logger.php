@@ -5,6 +5,9 @@ namespace components;
 
 class Logger
 {
+    /**
+     * @var string
+     */
     private static $logFile = 'logs/log.txt';
 
     /**
