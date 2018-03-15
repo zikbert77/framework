@@ -2,8 +2,8 @@
 
 namespace app;
 
-use components\Logger;
 use Exception;
+use components\Logger;
 
 class Router {
 
@@ -12,7 +12,6 @@ class Router {
     public function __construct(){
 
         $this->routes = include(ROOT . '/app/config/routes.php');
-        arsort($this->routes);
     }
     
     private function getURI(){
@@ -26,7 +25,6 @@ class Router {
     
     public function run()
     {
-
         try {
 
             //Отримати строку запроса
@@ -84,11 +82,8 @@ class Router {
                         Logger::log('Route not found!');
                         throw new Exception('Route not found!');
                     }
-
                 }
-
             }
-
         } catch (Exception $e){
             Logger::log($e->getMessage());
             print_r($e->getMessage());
