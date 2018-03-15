@@ -30,7 +30,7 @@ class Session extends Model
         if (self::checkSessionExists($user))
             return true;
 
-        $stmt = self::$db->prepare("INSERT INTO sessions (user_id, ip, user_agent, hash, time) VALUES(:user_id, :ip, :user_agent, :hash, :extime)");
+        $stmt = self::$db->prepare("INSERT INTO sessions (user_id, ip, user_agent, hash, ext_time) VALUES(:user_id, :ip, :user_agent, :hash, :extime)");
 
         if($stmt->execute([
             'user_id'       => $user['user_id'],
@@ -66,7 +66,7 @@ class Session extends Model
     public static function validateHash($session_user)
     {
 
-        $stmt = self::$db->prepare("SELECT user_id FROM sessions WHERE hash = :hash AND user_id = :user_id AND time > :exttime LIMIT 1");
+        $stmt = self::$db->prepare("SELECT user_id FROM sessions WHERE hash = :hash AND user_id = :user_id AND ext_time > :exttime LIMIT 1");
 
         if($stmt->execute([
             'hash' => $session_user['hash'],

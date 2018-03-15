@@ -39,8 +39,7 @@ class SecurityController extends Controller
         $remember = isset($_POST['lg_remember'])? $_POST['lg_remember'] : false;
 
         try {
-            if ($this->auth->login($u_name, $u_pass))
-                return redirectToRoute('admin_index');
+            $this->auth->login($u_name, $u_pass);
         } catch (\Exception $e){
             Logger::log($e->getMessage());
         }
