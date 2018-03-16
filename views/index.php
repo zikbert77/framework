@@ -16,9 +16,12 @@
 <body>
 
     <div class="container">
-        <h1>Welcome to my framework</h1>
+        <h1>Lightweight php framework</h1>
         <hr>
         <span>Let`s code</span>
+        <br>
+        <br>
+        <a href="http://zikbert77.zzz.com.ua/">Visit us website</a>
     </div>
 
     <!--Bootstrap-->
