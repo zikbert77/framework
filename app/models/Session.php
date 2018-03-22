@@ -13,11 +13,12 @@ class Session extends Model
      */
     private static function checkSessionExists($user)
     {
-        $stmt = self::$db->prepare("SELECT * FROM sessions WHERE hash = :hash AND user_id = :user_id LIMIT 1");
+        $stmt = self::$db->prepare("SELECT * FROM sessions WHERE hash = :hash AND user_id = :user_id AND ext_time > :ext_time LIMIT 1");
 
         if($stmt->execute([
             'hash' => $user['hash'],
-            'user_id' => $user['user_id']
+            'user_id' => $user['user_id'],
+            'ext_time' => date('Y-m-d h:i:s')
         ])){
             if ($stmt->rowCount() == 1)
                 return true;
