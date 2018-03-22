@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\Model;
+use components\Logger;
 
 class Session extends Model
 {
@@ -13,6 +14,8 @@ class Session extends Model
      */
     private static function checkSessionExists($user)
     {
+        self::clearSessions();
+
         $stmt = self::$db->prepare("SELECT * FROM sessions WHERE hash = :hash AND user_id = :user_id AND ext_time > :ext_time LIMIT 1");
 
         if($stmt->execute([
@@ -75,12 +78,12 @@ class Session extends Model
     public static function validateHash($session_user)
     {
 
-        $stmt = self::$db->prepare("SELECT user_id FROM sessions WHERE hash = :hash AND user_id = :user_id AND ext_time > :exttime LIMIT 1");
+        $stmt = self::$db->prepare("SELECT user_id FROM sessions WHERE hash = :hash AND user_id = :user_id AND ext_time > :ext_time LIMIT 1");
 
         if($stmt->execute([
             'hash' => $session_user['hash'],
             'user_id' => $session_user['user_id'],
-            'exttime' => date('Y-m-d h:i:s')
+            'ext_time' => date('Y-m-d h:i:s')
         ])) {
 
             $user_id = $stmt->fetch();
@@ -102,6 +105,20 @@ class Session extends Model
         }
 
         return false;
+    }
+
+    /**
+     * Clear old unvailable sessions
+     */
+    private static function clearSessions()
+    {
+        $stmt = self::$db->prepare("DELETE FROM sessions WHERE ext_time < :ext_time");
+
+        if(!$stmt->execute([
+            'ext_time'        => date('Y-m-d h:i:s')
+        ])){
+            Logger::log('Fail (Clear session)');
+        }
     }
 
 }

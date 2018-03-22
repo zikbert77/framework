@@ -24,7 +24,6 @@ class Logger
             self::$logFile = 'logs/' . $file . '.txt';
         }
 
-
         if($msgDate)
             $msg = '[ ' . date('Y-m-d h:i:s') . ' ] ' . $msg;
 
