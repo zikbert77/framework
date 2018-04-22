@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+$script_name = $argv[0];
+
+$ex = explode(':', $argv[1]);
+
+$class_name = 'core\\console\\' . $ex[0] . 'Command';
+$method = $ex[1];
+
+$root_dir = str_replace('\\','/', dirname(__FILE__)) . '/../';
+define('ROOT', $root_dir);
+
+require ROOT . '/vendor/autoload.php';
+
+if(class_exists( $class_name)){
+    $class = new $class_name;
+    $class->$method();
+} else {
+    die('Command ' . $ex[0] . ' not found');
+}

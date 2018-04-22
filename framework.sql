@@ -1,11 +1,11 @@
-﻿-- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
+-- phpMyAdmin SQL Dump
+-- version 4.4.15.7
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Время создания: Фев 22 2018 г., 13:21
--- Версия сервера: 5.7.21-0ubuntu0.16.04.1
--- Версия PHP: 7.0.27-1+ubuntu16.04.1+deb.sury.org+1
+-- Хост: 127.0.0.1:3306
+-- Время создания: Апр 22 2018 г., 18:27
+-- Версия сервера: 5.5.50
+-- Версия PHP: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Структура таблицы `sessions`
 --
 
-CREATE TABLE `sessions` (
+CREATE TABLE IF NOT EXISTS `sessions` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `ip` varchar(10) NOT NULL,
@@ -41,10 +41,10 @@ CREATE TABLE `sessions` (
 -- Структура таблицы `sessions_log`
 --
 
-CREATE TABLE `sessions_log` (
+CREATE TABLE IF NOT EXISTS `sessions_log` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `ip` int(4) UNSIGNED NOT NULL,
+  `ip` int(4) unsigned NOT NULL,
   `user_agent` text NOT NULL,
   `hash` varchar(60) NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -56,12 +56,12 @@ CREATE TABLE `sessions_log` (
 -- Структура таблицы `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
   `username` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Индексы сохранённых таблиц
@@ -105,7 +105,7 @@ ALTER TABLE `sessions_log`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
