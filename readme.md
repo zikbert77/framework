@@ -1,4 +1,4 @@
-# Lightweight php framework
+# Lightweight php framework (LiF)
 
 Let`s code!
 
