@@ -6,7 +6,10 @@ use components\Db;
 
 class dbCommand
 {
-    public function init()
+    /**
+     * @param array $arguments
+     */
+    public function init($arguments = [])
     {
         echo "Start importing database...";
 

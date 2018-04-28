@@ -8,6 +8,15 @@ $ex = explode(':', $argv[1]);
 $class_name = 'core\\console\\' . $ex[0] . 'Command';
 $method = $ex[1];
 
+$arguments = [];
+
+$i = 2;
+while ($i < $argc){
+
+    $arguments[] = $argv[$i];
+    $i++;
+}
+
 $root_dir = str_replace('\\','/', dirname(__FILE__)) . '/../';
 define('ROOT', $root_dir);
 
@@ -19,7 +28,7 @@ if(class_exists( $class_name)){
     if(!method_exists($class, $method))
         die("\nMethod '$ex[1]' for command '$ex[0]' not found\n");
 
-    $class->$method();
+    $class->$method($arguments);
 } else {
     die("\nCommand '$ex[0]' not found\n");
 }
