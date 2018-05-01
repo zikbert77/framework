@@ -11,6 +11,11 @@ class Console
 
     private $command;
 
+    /**
+     * Console constructor.
+     * @param $argv
+     * @param $argc
+     */
     public function __construct($argv, $argc)
     {
         $this->argv = $argv;
@@ -19,7 +24,12 @@ class Console
         $this->prepare();
     }
 
-    private function execute($class, $method, $arguments)
+    /**
+     * @param string $class
+     * @param string $method
+     * @param array $arguments
+     */
+    private function execute($class, $method, $arguments = [])
     {
 
         if(class_exists($class)){
@@ -34,14 +44,16 @@ class Console
         }
     }
 
-
+    /**
+     * Prepare class name, method name and arguments and call execute method
+     */
     private function prepare()
     {
         $ex = explode(':', $this->argv[1]);
 
-
         if($ex[0] == 'list'){
-            return $this->showList();
+            $this->showList();
+            exit();
         }
 
         $class = 'core\\console\\commands\\' . $ex[0] . 'Command';
@@ -55,6 +67,9 @@ class Console
         $this->execute($class, $method, $arguments);
     }
 
+    /**
+     * Call describe method and build all available commands view
+     */
     private function showList()
     {
         $files = scandir(ROOT . '/core/console/commands/');

@@ -8,6 +8,11 @@ use core\console\ConsoleInterface;
 class dbCommand implements ConsoleInterface
 {
 
+    /**
+     * Describe class methods
+     *
+     * @return array
+     */
     public function describe()
     {
         return get_class_methods($this);
