@@ -1,17 +1,24 @@
 <?php
 
-namespace core\console;
+namespace core\console\commands;
 
 use components\Db;
+use core\console\ConsoleInterface;
 
-class dbCommand
+class dbCommand implements ConsoleInterface
 {
+
+    public function describe()
+    {
+        return get_class_methods($this);
+    }
+
     /**
      * @param array $arguments
      */
     public function init($arguments = [])
     {
-        echo "Start importing database...";
+        echo "Start importing database...\n";
 
         if(file_exists(ROOT . 'framework.sql')){
             $pdo = Db::getConnection();

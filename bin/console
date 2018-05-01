@@ -1,34 +1,10 @@
 #!/usr/bin/env php
 <?php
 
-$script_name = $argv[0];
-
-$ex = explode(':', $argv[1]);
-
-$class_name = 'core\\console\\' . $ex[0] . 'Command';
-$method = $ex[1];
-
-$arguments = [];
-
-$i = 2;
-while ($i < $argc){
-
-    $arguments[] = $argv[$i];
-    $i++;
-}
-
 $root_dir = str_replace('\\','/', dirname(__FILE__)) . '/../';
 define('ROOT', $root_dir);
 
 require ROOT . '/vendor/autoload.php';
 
-if(class_exists( $class_name)){
-    $class = new $class_name;
-
-    if(!method_exists($class, $method))
-        die("\nMethod '$ex[1]' for command '$ex[0]' not found\n");
-
-    $class->$method($arguments);
-} else {
-    die("\nCommand '$ex[0]' not found\n");
-}
+$c = 'core\\console\\Console';
+$console = new $c($argv, $argc);
