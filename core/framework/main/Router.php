@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace core\framework\main;
 
 use Exception;
 use components\Logger;

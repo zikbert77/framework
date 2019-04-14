@@ -31,12 +31,12 @@ class Console
      */
     private function execute($class, $method, $arguments = [])
     {
-
-        if(class_exists($class)){
+        if (class_exists($class)) {
             $class = new $class;
 
-            if(!method_exists($class, $method))
+            if (!method_exists($class, $method)) {
                 die("\nMethod '$method' for command '{$this->argv[1]}' not found\n");
+            }
 
             $class->$method($arguments);
         } else {
@@ -51,7 +51,7 @@ class Console
     {
         $ex = explode(':', $this->argv[1]);
 
-        if($ex[0] == 'list'){
+        if ($ex[0] == 'list') {
             $this->showList();
             exit();
         }
@@ -60,7 +60,7 @@ class Console
         $method = $ex[1];
         $arguments = [];
 
-        for($i = 2; $i < $this->argc; $i++){
+        for ($i = 2; $i < $this->argc; $i++) {
             $arguments[] = $this->argv[$i];
         }
 
@@ -77,18 +77,19 @@ class Console
         echo "\nList of available commands:";
 
         foreach ($files as $file){
-            if (strpos($file, '.')){
+            if (strpos($file, '.')) {
 
-                $class =  explode('.php', $file)[0];
+                $class = explode('.php', $file)[0];
 
                 echo "\n==========================\n\t$class\n==========================\n";
 
                 $className = 'core\\console\\commands\\' . $class;
                 $classObj = new $className;
 
-                foreach ($classObj->describe() as $method){
-                    if($method != 'describe')
-                        echo "* $method\n";
+                foreach ($classObj->describe() as $method) {
+                    if ($method != 'describe') {
+                        echo explode('Command', $class)[0] . ":{$method}\n";
+                    }
                 }
             }
         }

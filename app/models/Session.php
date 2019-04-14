@@ -2,8 +2,8 @@
 
 namespace app\models;
 
-use app\Model;
 use components\Logger;
+use core\framework\main\Model;
 
 class Session extends Model
 {

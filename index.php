@@ -1,6 +1,6 @@
 <?php
 
-use app\Router;
+use core\framework\main\Router;
 
 //1. General settings
 

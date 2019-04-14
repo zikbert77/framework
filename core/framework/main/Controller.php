@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace core\framework\main;
 
-use app\Model;
-use Exception;
 use components\Logger;
 use components\AuthUtil;
+
+use core\framework\main\Model;
 
 class Controller
 {
@@ -43,9 +43,9 @@ class Controller
                 return require_once $filePath;
             } else {
                 Logger::log("View not found");
-                throw new Exception("View not found");
+                throw new \Exception("View not found");
             }
-        } catch (Exception $e){
+        } catch (\Exception $e){
             return print_r($e->getMessage());
         }
     }

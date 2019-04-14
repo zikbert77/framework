@@ -1,12 +1,11 @@
 <?php
 
-namespace app;
+namespace core\framework\main;
 
 use components\Db;
 
 class Model
 {
-
     /**
      * @var \PDO $db
      */
@@ -20,5 +19,4 @@ class Model
         if (!isset(self::$db))
             self::$db = Db::getConnection();
     }
-
 }

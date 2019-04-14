@@ -2,13 +2,11 @@
 
 namespace app\controllers;
 
-
-use app\Controller;
 use components\Logger;
+use core\framework\main\Controller;
 
 class SecurityController extends Controller
 {
-
     /**
      * SecurityController constructor
      *

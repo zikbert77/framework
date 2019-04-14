@@ -3,21 +3,11 @@
 namespace core\console\commands;
 
 use components\Db;
-use core\console\ConsoleInterface;
+use components\Logger;
+use core\console\AbstractConsoleCommand;
 
-class dbCommand implements ConsoleInterface
+class dbCommand extends AbstractConsoleCommand
 {
-
-    /**
-     * Describe class methods
-     *
-     * @return array
-     */
-    public function describe()
-    {
-        return get_class_methods($this);
-    }
-
     /**
      * @param array $arguments
      */
@@ -25,29 +15,36 @@ class dbCommand implements ConsoleInterface
     {
         echo "Start importing database...\n";
 
-        if(file_exists(ROOT . 'framework.sql')){
-            $pdo = Db::getConnection();
+        if (file_exists(ROOT . 'framework.sql')) {
 
-            $templine = '';
-            $lines = file(ROOT . 'framework.sql');
+            try {
+                $pdo = Db::getConnection();
 
-            foreach ($lines as $line)
-            {
-                if (substr($line, 0, 2) == '--' || $line == '')
-                    continue;
+                $templine = '';
+                $lines = file(ROOT . 'framework.sql');
 
-                $templine .= $line;
+                foreach ($lines as $line) {
 
-                if (substr(trim($line), -1, 1) == ';')
-                {
-                    $pdo->query($templine);
-                    $templine = '';
+                    if (substr($line, 0, 2) == '--' || $line == '') {
+                        continue;
+                    }
+
+                    $templine .= $line;
+
+                    if (substr(trim($line), -1, 1) == ';') {
+                        $pdo->query($templine);
+                        $templine = '';
+                    }
                 }
+                echo "\nTables imported successfully!\n";
+            } catch (\PDOException $exception) {
+                echo "\n{$exception->getMessage()}\n";
+                Logger::log($exception->getMessage());
             }
-            echo "\nTables imported successfully!\n";
         } else {
             echo "\nFile with database does not exists!\n";
         }
+
         return;
     }
 }
