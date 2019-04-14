@@ -22,12 +22,12 @@ define('ROOT', str_replace('\\','/', dirname(__FILE__)));
 /**
  * Helpers functions
 */
-require_once ROOT . '/core/helpers.php';
+require_once(ROOT . '/core/helpers.php');
 
 /**
  * PSR-4 classes autoload
 */
-require ROOT . '/vendor/autoload.php';
+require_once(ROOT . '/vendor/autoload.php');
 
 //3. Connect to database
 require_once(ROOT . '/components/Db.php');

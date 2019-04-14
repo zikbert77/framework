@@ -2,7 +2,6 @@
 
 namespace components;
 
-
 class Logger
 {
     /**

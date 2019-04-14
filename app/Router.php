@@ -12,16 +12,16 @@ class Router {
     /**
      * Router constructor.
      */
-    public function __construct(){
-
+    public function __construct()
+    {
         $this->routes = include(ROOT . '/app/config/routes.php');
     }
 
     /**
      * @return null|string
      */
-    private function getURI(){
-
+    private function getURI()
+    {
         if(!empty($_SERVER['REQUEST_URI'])){
             $uri = trim($_SERVER['REQUEST_URI']);
         }

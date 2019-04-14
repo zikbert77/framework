@@ -16,10 +16,6 @@
 
 
 return [
-    'homepage' => [
-        'defaults' => 'Default/index',
-        'path' => '/'
-    ],
     'login' => [
         'defaults' => 'Security/login',
         'path' => '/login'
@@ -27,5 +23,9 @@ return [
     'logout' => [
         'defaults' => 'Security/logout',
         'path' => '/logout'
-    ]
+    ],
+    'homepage' => [
+        'defaults' => 'Default/index',
+        'path' => '/'
+    ],
 ];
