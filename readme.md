@@ -2,4 +2,4 @@
 
 Let`s code!
 
-<a href="http://zikbert77.zzz.com.ua/">Visit us website</a>
+<a href="https://seventh-cat.com/">Visit our website</a>
